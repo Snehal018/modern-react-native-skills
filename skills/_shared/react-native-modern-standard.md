@@ -146,7 +146,7 @@ Sentry or similar observability can be documented as a placeholder or follow-up,
 
 ### Dependency Installation
 
-When adding packages, install the latest compatible version unless the user explicitly requests a fixed version.
+When adding packages, install the latest compatible version unless the user explicitly requests a fixed version. In Expo projects, "latest compatible" means the version selected by Expo CLI for the project's installed Expo and React Native versions.
 
 Rules:
 
@@ -158,8 +158,12 @@ Rules:
 - If no lock file exists but `package.json` has `packageManager`, use that package manager.
 - If no lock file or `packageManager` field exists, use the manager already used by package scripts or repo docs; otherwise ask before installing.
 - Do not mix package managers or generate a second lock file without explicit approval.
-- Prefer explicit latest installs such as `yarn add package@latest`, `npm install package@latest`, or `pnpm add package@latest`.
-- For Expo-managed native packages, use the project's Expo-compatible install path when required, and do not knowingly install a version incompatible with the current Expo SDK.
+- In Expo projects, use Expo CLI install commands for package installs so Expo can choose compatible package versions. Prefer the package-manager flag that matches the lock-file policy, such as `npx expo install package --yarn`, `npx expo install package --npm`, or `npx expo install package --pnpm`. `yarn expo install package` is also acceptable in Yarn projects.
+- Do not force `package@latest` for Expo-managed, React Native, or native packages inside Expo projects when Expo CLI can select the compatible version.
+- In non-Expo projects, prefer explicit latest installs such as `yarn add package@latest`, `npm install package@latest`, or `pnpm add package@latest`.
+- Watch Expo install output for incompatible or incorrect package version warnings. If Expo reports incompatible versions, tell the user which packages need review and the compatible versions Expo recommends.
+- Do not run `npx expo install --fix` or accept an automatic fix prompt unless the user explicitly asks you to apply dependency fixes.
+- `npx expo install --check` may be used for validation. If it reports invalid package versions, report them to the user instead of applying `--fix` yourself.
 
 ## File And Folder Conventions
 
