@@ -391,9 +391,9 @@
           <p class="eyebrow">Review artifact</p>
           <h1 id="page-title">React Native skill system roadmap</h1>
           <p class="hero-copy">
-            A proposed pathway for expanding the current three-skill system into a practical agent
-            operating model for modern React Native development. The goal is more predictable agent
-            work, not a large catalog of overlapping instructions.
+            A pathway for expanding the current React Native skill system into a practical agent
+            operating model for modern app development. Wave 1 is now complete, covering everyday
+            navigation, API/data, forms, and auth work without creating overlapping instructions.
           </p>
           <nav class="nav" aria-label="Page sections">
             <a href="#current-system">Current system</a>
@@ -420,9 +420,9 @@
             <h2>What exists now</h2>
           </div>
           <p>
-            The repo currently has a solid foundation: setup, feature delivery, review, and one
-            shared standard. The next work should fill high-frequency gaps without duplicating the
-            shared React Native rules.
+            The repo now has the foundation skills plus Wave 1 app-work workflows. The next work
+            should add testing and performance loops without duplicating the shared React Native
+            rules.
           </p>
         </div>
 
@@ -441,6 +441,38 @@
             <div class="tagline">
               <span class="tag green">feature work</span>
               <span class="tag">implementation</span>
+            </div>
+          </article>
+          <article class="card">
+            <h3><span class="mono">rn-navigation-flow</span></h3>
+            <p>Guides routes, params, deep links, gates, and route lifecycle behavior.</p>
+            <div class="tagline">
+              <span class="tag green">Wave 1</span>
+              <span class="tag">navigation</span>
+            </div>
+          </article>
+          <article class="card">
+            <h3><span class="mono">rn-api-data</span></h3>
+            <p>Shapes API clients, services, query hooks, mutations, cache, and validation.</p>
+            <div class="tagline">
+              <span class="tag green">Wave 1</span>
+              <span class="tag">server state</span>
+            </div>
+          </article>
+          <article class="card">
+            <h3><span class="mono">rn-forms-validation</span></h3>
+            <p>Covers forms, schemas, field errors, submit states, and keyboard-aware input flows.</p>
+            <div class="tagline">
+              <span class="tag green">Wave 1</span>
+              <span class="tag">forms</span>
+            </div>
+          </article>
+          <article class="card">
+            <h3><span class="mono">rn-auth-secure-storage</span></h3>
+            <p>Guides session lifecycle, protected routes, SecureStore, auth headers, and cache clearing.</p>
+            <div class="tagline">
+              <span class="tag green">Wave 1</span>
+              <span class="tag">auth</span>
             </div>
           </article>
           <article class="card">
@@ -629,6 +661,9 @@
             <div class="phase-label">Wave 1</div>
             <div>
               <h3>Cover everyday app work</h3>
+              <div class="tagline">
+                <span class="tag green">Complete</span>
+              </div>
               <p>
                 Create <span class="mono">rn-navigation-flow</span>,
                 <span class="mono">rn-api-data</span>, <span class="mono">rn-forms-validation</span>,
