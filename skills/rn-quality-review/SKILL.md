@@ -9,6 +9,8 @@ description: Review React Native or Expo code against modern TypeScript architec
 
 Review a React Native codebase, feature, or PR-style change against the shared project standards. Review first; apply targeted fixes only when the user asks for fixes or the request clearly includes implementation.
 
+Read `../_shared/skill-system-constitution.md` before editing this skill or creating adjacent review skills.
+
 Read `../_shared/react-native-modern-standard.md` before reviewing.
 
 ## Use this skill when

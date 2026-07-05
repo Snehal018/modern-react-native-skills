@@ -1,0 +1,708 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>React Native Skill System Roadmap</title>
+    <style>
+      :root {
+        color-scheme: light;
+        --ink: #1d2528;
+        --muted: #657176;
+        --paper: #f7f4ed;
+        --panel: #ffffff;
+        --line: #d8d1c2;
+        --accent: #0d6b72;
+        --accent-strong: #084f55;
+        --accent-soft: #dceced;
+        --warn: #a85616;
+        --warn-soft: #f6e5d3;
+        --violet: #6d4cb8;
+        --violet-soft: #eee7f7;
+        --green: #3c7450;
+        --green-soft: #e3eee6;
+        --shadow: 0 22px 60px rgba(29, 37, 40, 0.12);
+      }
+
+      * {
+        box-sizing: border-box;
+      }
+
+      html {
+        scroll-behavior: smooth;
+      }
+
+      body {
+        margin: 0;
+        background:
+          linear-gradient(90deg, rgba(13, 107, 114, 0.06) 1px, transparent 1px),
+          linear-gradient(180deg, rgba(13, 107, 114, 0.06) 1px, transparent 1px),
+          var(--paper);
+        background-size: 28px 28px;
+        color: var(--ink);
+        font:
+          16px/1.55 ui-sans-serif,
+          system-ui,
+          -apple-system,
+          BlinkMacSystemFont,
+          "Segoe UI",
+          sans-serif;
+      }
+
+      a {
+        color: var(--accent-strong);
+        text-decoration-thickness: 0.08em;
+        text-underline-offset: 0.18em;
+      }
+
+      .page {
+        max-width: 1180px;
+        margin: 0 auto;
+        padding: 32px 20px 56px;
+      }
+
+      .hero {
+        display: grid;
+        grid-template-columns: minmax(0, 1fr) minmax(280px, 420px);
+        gap: 28px;
+        align-items: end;
+        min-height: 430px;
+        padding: 36px;
+        border: 1px solid var(--line);
+        background: rgba(255, 255, 255, 0.76);
+        box-shadow: var(--shadow);
+      }
+
+      .eyebrow {
+        margin: 0 0 16px;
+        color: var(--accent-strong);
+        font-size: 0.76rem;
+        font-weight: 800;
+        letter-spacing: 0.12em;
+        text-transform: uppercase;
+      }
+
+      h1,
+      h2,
+      h3 {
+        margin: 0;
+        line-height: 1.05;
+      }
+
+      h1 {
+        max-width: 760px;
+        font-family: ui-serif, Georgia, Cambria, "Times New Roman", serif;
+        font-size: clamp(3rem, 8vw, 6.4rem);
+        font-weight: 700;
+        letter-spacing: 0;
+      }
+
+      h2 {
+        font-family: ui-serif, Georgia, Cambria, "Times New Roman", serif;
+        font-size: clamp(2rem, 4vw, 3.1rem);
+        letter-spacing: 0;
+      }
+
+      h3 {
+        font-size: 1rem;
+        letter-spacing: 0;
+      }
+
+      .hero-copy {
+        max-width: 680px;
+        margin: 22px 0 0;
+        color: #374346;
+        font-size: 1.12rem;
+      }
+
+      .hero-panel {
+        border-left: 4px solid var(--accent);
+        padding: 22px;
+        background: var(--accent-soft);
+      }
+
+      .hero-panel strong {
+        display: block;
+        margin-bottom: 8px;
+        font-size: 0.78rem;
+        letter-spacing: 0.1em;
+        text-transform: uppercase;
+      }
+
+      .hero-panel p {
+        margin: 0;
+      }
+
+      .nav {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 10px;
+        margin: 22px 0 0;
+      }
+
+      .nav a {
+        display: inline-flex;
+        align-items: center;
+        min-height: 38px;
+        padding: 8px 12px;
+        border: 1px solid var(--line);
+        background: rgba(255, 255, 255, 0.72);
+        color: var(--ink);
+        font-size: 0.9rem;
+        font-weight: 700;
+        text-decoration: none;
+      }
+
+      .section {
+        margin-top: 36px;
+        padding: 30px;
+        border: 1px solid var(--line);
+        background: rgba(255, 255, 255, 0.86);
+      }
+
+      .section-head {
+        display: grid;
+        grid-template-columns: minmax(0, 1fr) minmax(220px, 340px);
+        gap: 24px;
+        align-items: start;
+        margin-bottom: 24px;
+      }
+
+      .section-head p {
+        margin: 0;
+        color: var(--muted);
+      }
+
+      .grid {
+        display: grid;
+        gap: 16px;
+      }
+
+      .grid.two {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+
+      .grid.three {
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+      }
+
+      .card {
+        border: 1px solid var(--line);
+        background: var(--panel);
+        padding: 18px;
+      }
+
+      .card p {
+        margin: 10px 0 0;
+        color: var(--muted);
+      }
+
+      .tagline {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 8px;
+        margin-top: 14px;
+      }
+
+      .tag {
+        display: inline-flex;
+        align-items: center;
+        min-height: 26px;
+        padding: 4px 8px;
+        border: 1px solid rgba(13, 107, 114, 0.28);
+        background: var(--accent-soft);
+        color: var(--accent-strong);
+        font-size: 0.78rem;
+        font-weight: 800;
+      }
+
+      .tag.warn {
+        border-color: rgba(168, 86, 22, 0.28);
+        background: var(--warn-soft);
+        color: var(--warn);
+      }
+
+      .tag.violet {
+        border-color: rgba(109, 76, 184, 0.25);
+        background: var(--violet-soft);
+        color: var(--violet);
+      }
+
+      .tag.green {
+        border-color: rgba(60, 116, 80, 0.26);
+        background: var(--green-soft);
+        color: var(--green);
+      }
+
+      .rail {
+        display: grid;
+        gap: 14px;
+      }
+
+      .phase {
+        display: grid;
+        grid-template-columns: 110px minmax(0, 1fr);
+        gap: 16px;
+        border-top: 1px solid var(--line);
+        padding-top: 18px;
+      }
+
+      .phase:first-child {
+        border-top: 0;
+        padding-top: 0;
+      }
+
+      .phase-label {
+        color: var(--accent-strong);
+        font-weight: 900;
+        letter-spacing: 0.08em;
+        text-transform: uppercase;
+      }
+
+      .phase h3 {
+        margin-bottom: 8px;
+      }
+
+      .phase p {
+        margin: 0;
+        color: var(--muted);
+      }
+
+      .skill-table {
+        width: 100%;
+        border-collapse: collapse;
+        overflow-wrap: anywhere;
+      }
+
+      .skill-table th,
+      .skill-table td {
+        border-bottom: 1px solid var(--line);
+        padding: 14px 12px;
+        text-align: left;
+        vertical-align: top;
+      }
+
+      .skill-table th {
+        color: var(--accent-strong);
+        font-size: 0.78rem;
+        letter-spacing: 0.08em;
+        text-transform: uppercase;
+      }
+
+      .skill-table td:first-child {
+        min-width: 180px;
+        font-weight: 850;
+      }
+
+      .priority {
+        white-space: nowrap;
+        font-weight: 850;
+      }
+
+      .priority.high {
+        color: var(--accent-strong);
+      }
+
+      .priority.medium {
+        color: var(--warn);
+      }
+
+      .priority.later {
+        color: var(--violet);
+      }
+
+      .callout {
+        border-left: 4px solid var(--warn);
+        padding: 16px 18px;
+        background: var(--warn-soft);
+      }
+
+      .callout p {
+        margin: 0;
+      }
+
+      .checklist {
+        display: grid;
+        gap: 10px;
+        margin: 0;
+        padding: 0;
+        list-style: none;
+      }
+
+      .checklist li {
+        position: relative;
+        padding-left: 28px;
+      }
+
+      .checklist li::before {
+        position: absolute;
+        left: 0;
+        top: 0.12em;
+        color: var(--accent);
+        content: "OK";
+        font-size: 0.75rem;
+        font-weight: 900;
+      }
+
+      .mono {
+        font-family:
+          ui-monospace,
+          SFMono-Regular,
+          Menlo,
+          Monaco,
+          Consolas,
+          "Liberation Mono",
+          monospace;
+        font-size: 0.94em;
+      }
+
+      @media (max-width: 860px) {
+        .hero,
+        .section-head,
+        .grid.two,
+        .grid.three {
+          grid-template-columns: 1fr;
+        }
+
+        .hero {
+          min-height: auto;
+          padding: 24px;
+        }
+
+        .section {
+          padding: 22px;
+        }
+
+        .phase {
+          grid-template-columns: 1fr;
+        }
+
+        .skill-table {
+          display: block;
+          overflow-x: auto;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <main class="page">
+      <section class="hero" aria-labelledby="page-title">
+        <div>
+          <p class="eyebrow">Review artifact</p>
+          <h1 id="page-title">React Native skill system roadmap</h1>
+          <p class="hero-copy">
+            A proposed pathway for expanding the current three-skill system into a practical agent
+            operating model for modern React Native development. The goal is more predictable agent
+            work, not a large catalog of overlapping instructions.
+          </p>
+          <nav class="nav" aria-label="Page sections">
+            <a href="#current-system">Current system</a>
+            <a href="#expansion-model">Expansion model</a>
+            <a href="#skill-roadmap">Skill roadmap</a>
+            <a href="#priority-path">Priority path</a>
+            <a href="#review-gates">Review gates</a>
+          </nav>
+        </div>
+        <aside class="hero-panel">
+          <strong>Recommendation</strong>
+          <p>
+            Add skills in layers: first a router and lifecycle skills, then domain-specific build
+            skills, then release and observability skills. Keep shared standards in references so
+            each skill stays short and deterministic.
+          </p>
+        </aside>
+      </section>
+
+      <section class="section" id="current-system">
+        <div class="section-head">
+          <div>
+            <p class="eyebrow">Baseline</p>
+            <h2>What exists now</h2>
+          </div>
+          <p>
+            The repo currently has a solid foundation: setup, feature delivery, review, and one
+            shared standard. The next work should fill high-frequency gaps without duplicating the
+            shared React Native rules.
+          </p>
+        </div>
+
+        <div class="grid three">
+          <article class="card">
+            <h3><span class="mono">setup-react-native</span></h3>
+            <p>Turns an existing Expo/RN boilerplate into the standard architecture.</p>
+            <div class="tagline">
+              <span class="tag">foundation</span>
+              <span class="tag">project setup</span>
+            </div>
+          </article>
+          <article class="card">
+            <h3><span class="mono">add-react-native-feature</span></h3>
+            <p>Adds feature modules while respecting existing app conventions.</p>
+            <div class="tagline">
+              <span class="tag green">feature work</span>
+              <span class="tag">implementation</span>
+            </div>
+          </article>
+          <article class="card">
+            <h3><span class="mono">rn-quality-review</span></h3>
+            <p>Reviews RN code against architecture, state, component, data, and type standards.</p>
+            <div class="tagline">
+              <span class="tag violet">review</span>
+              <span class="tag">quality</span>
+            </div>
+          </article>
+        </div>
+      </section>
+
+      <section class="section" id="expansion-model">
+        <div class="section-head">
+          <div>
+            <p class="eyebrow">Model</p>
+            <h2>How to expand without sprawl</h2>
+          </div>
+          <p>
+            Use skills for repeatable processes with distinct invocation triggers. Use shared
+            references for standards that many skills need. Avoid creating a new skill for every
+            library unless it changes the agent's process.
+          </p>
+        </div>
+
+        <div class="grid two">
+          <article class="card">
+            <h3>Split by process, not package</h3>
+            <p>
+              A package alone is not a skill. Create a skill when the agent needs a distinct
+              sequence: navigation design, auth flow, offline sync, app release, performance
+              diagnosis, or test strategy.
+            </p>
+          </article>
+          <article class="card">
+            <h3>Keep a single source of truth</h3>
+            <p>
+              Shared standards should live in <span class="mono">skills/_shared/</span>. Individual
+              skills should point to the relevant branch and add only process-specific steps.
+            </p>
+          </article>
+          <article class="card">
+            <h3>Prefer model-invoked for core work</h3>
+            <p>
+              Core RN skills should be model-invoked because future agents need to discover them
+              automatically. Niche or experimental skills can be user-invoked or routed.
+            </p>
+          </article>
+          <article class="card">
+            <h3>Add a router when the catalog grows</h3>
+            <p>
+              Once there are more than seven to nine RN skills, create a router skill that chooses
+              the right workflow and prevents agents from stacking unrelated skills.
+            </p>
+          </article>
+        </div>
+      </section>
+
+      <section class="section" id="skill-roadmap">
+        <div class="section-head">
+          <div>
+            <p class="eyebrow">Roadmap</p>
+            <h2>Proposed future skills</h2>
+          </div>
+          <p>
+            The table is ordered by value and likely reuse. The first wave should make everyday app
+            work safer; later waves cover release, native integration, and specialized workflows.
+          </p>
+        </div>
+
+        <table class="skill-table">
+          <thead>
+            <tr>
+              <th>Skill</th>
+              <th>Use when</th>
+              <th>Why it earns a skill</th>
+              <th>Priority</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><span class="mono">rn-skill-router</span></td>
+              <td>The user asks broadly for React Native help and the agent must pick a workflow.</td>
+              <td>Reduces cognitive load once the system has many skills and avoids wrong-skill starts.</td>
+              <td class="priority high">High</td>
+            </tr>
+            <tr>
+              <td><span class="mono">rn-navigation-flow</span></td>
+              <td>Adding or changing routes, tabs, stacks, deep links, auth gates, or route params.</td>
+              <td>Navigation failures are common and cross-cut routing, params, state, and UX.</td>
+              <td class="priority high">High</td>
+            </tr>
+            <tr>
+              <td><span class="mono">rn-api-data</span></td>
+              <td>Designing API clients, query hooks, mutations, optimistic updates, or cache behavior.</td>
+              <td>TanStack Query, Zod, services, loading states, and RN focus/online behavior need a repeatable path.</td>
+              <td class="priority high">High</td>
+            </tr>
+            <tr>
+              <td><span class="mono">rn-forms-validation</span></td>
+              <td>Building forms, schema validation, field errors, submit flows, or edit/create screens.</td>
+              <td>Forms combine UI, validation, mutation state, accessibility, keyboard behavior, and types.</td>
+              <td class="priority high">High</td>
+            </tr>
+            <tr>
+              <td><span class="mono">rn-auth-secure-storage</span></td>
+              <td>Implementing login, token refresh, session persistence, protected routes, or secret storage.</td>
+              <td>Auth has security pitfalls and must coordinate SecureStore, API clients, navigation, and cache clearing.</td>
+              <td class="priority high">High</td>
+            </tr>
+            <tr>
+              <td><span class="mono">rn-testing-strategy</span></td>
+              <td>Adding tests for hooks, components, API boundaries, navigation flows, or regression coverage.</td>
+              <td>Future agents need a reliable test selection loop, not ad hoc snapshots or shallow tests.</td>
+              <td class="priority high">High</td>
+            </tr>
+            <tr>
+              <td><span class="mono">rn-performance-pass</span></td>
+              <td>Diagnosing slow screens, list jank, unnecessary renders, image cost, or animation issues.</td>
+              <td>Performance work needs measurement, hypotheses, list rules, memoization restraint, and verification.</td>
+              <td class="priority medium">Medium</td>
+            </tr>
+            <tr>
+              <td><span class="mono">rn-ui-system</span></td>
+              <td>Creating or extending reusable UI primitives, design tokens, theming, or component variants.</td>
+              <td>Prevents scattered styling and over-generic components while keeping app-specific UI coherent.</td>
+              <td class="priority medium">Medium</td>
+            </tr>
+            <tr>
+              <td><span class="mono">rn-offline-sync</span></td>
+              <td>Adding offline reads, queued mutations, persistence, conflict handling, or retry flows.</td>
+              <td>Offline behavior is a distinct architecture branch with storage, query persistence, and product tradeoffs.</td>
+              <td class="priority medium">Medium</td>
+            </tr>
+            <tr>
+              <td><span class="mono">rn-observability</span></td>
+              <td>Adding error reporting, performance monitoring, logs, breadcrumbs, or release health checks.</td>
+              <td>Instrumentation should be deliberate and privacy-aware, not scattered through components.</td>
+              <td class="priority medium">Medium</td>
+            </tr>
+            <tr>
+              <td><span class="mono">rn-release-readiness</span></td>
+              <td>Preparing EAS builds, app versions, store submissions, environment config, or release checks.</td>
+              <td>Release work has a predictable checklist and high cost for missed steps.</td>
+              <td class="priority medium">Medium</td>
+            </tr>
+            <tr>
+              <td><span class="mono">rn-native-module-bridge</span></td>
+              <td>Adding native modules, config plugins, permissions, native views, or platform-specific code.</td>
+              <td>Native work needs stronger guardrails than ordinary feature work and should inspect platform files first.</td>
+              <td class="priority later">Later</td>
+            </tr>
+          </tbody>
+        </table>
+      </section>
+
+      <section class="section" id="priority-path">
+        <div class="section-head">
+          <div>
+            <p class="eyebrow">Sequence</p>
+            <h2>Recommended build path</h2>
+          </div>
+          <p>
+            Build in waves. Each wave should leave the system useful on its own and should not
+            require future skills to make the current ones coherent.
+          </p>
+        </div>
+
+        <div class="rail">
+          <div class="phase">
+            <div class="phase-label">Wave 0</div>
+            <div>
+              <h3>Polish the foundation</h3>
+              <div class="tagline">
+                <span class="tag green">Complete</span>
+              </div>
+              <p>
+                Add examples of ideal skill invocation, decide whether to add
+                <span class="mono">agents/openai.yaml</span>, and create a short contribution gate
+                for future skills. Do not add more behavior yet.
+              </p>
+            </div>
+          </div>
+          <div class="phase">
+            <div class="phase-label">Wave 1</div>
+            <div>
+              <h3>Cover everyday app work</h3>
+              <p>
+                Create <span class="mono">rn-navigation-flow</span>,
+                <span class="mono">rn-api-data</span>, <span class="mono">rn-forms-validation</span>,
+                and <span class="mono">rn-auth-secure-storage</span>. These are the highest-return
+                skills because they appear in most product features.
+              </p>
+            </div>
+          </div>
+          <div class="phase">
+            <div class="phase-label">Wave 2</div>
+            <div>
+              <h3>Add quality loops</h3>
+              <p>
+                Create <span class="mono">rn-testing-strategy</span> and
+                <span class="mono">rn-performance-pass</span>. These should integrate with
+                <span class="mono">rn-quality-review</span> but keep their own diagnostic steps.
+              </p>
+            </div>
+          </div>
+          <div class="phase">
+            <div class="phase-label">Wave 3</div>
+            <div>
+              <h3>Add delivery operations</h3>
+              <p>
+                Create <span class="mono">rn-release-readiness</span> and
+                <span class="mono">rn-observability</span> after the app-building workflows are
+                stable. These skills are valuable but should not distract from feature correctness.
+              </p>
+            </div>
+          </div>
+          <div class="phase">
+            <div class="phase-label">Wave 4</div>
+            <div>
+              <h3>Add specialized branches</h3>
+              <p>
+                Add native, offline, maps, media, notifications, and animation skills only after
+                real project demand proves the branch is frequent enough to justify its context load.
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="section" id="review-gates">
+        <div class="section-head">
+          <div>
+            <p class="eyebrow">Governance</p>
+            <h2>Review gates for every new skill</h2>
+          </div>
+          <p>
+            Each future skill should pass these gates before it lands. The intent is to keep the
+            system predictable as it grows.
+          </p>
+        </div>
+
+        <div class="grid two">
+          <div class="callout">
+            <p>
+              A new skill should change agent behavior. If it only restates the shared standard or
+              lists package docs, make it a shared reference instead.
+            </p>
+          </div>
+          <ul class="checklist">
+            <li>Has a distinct leading word and model-invoked trigger.</li>
+            <li>Defines when to use and when not to use it.</li>
+            <li>Starts with inspection and explicit preconditions.</li>
+            <li>Uses ordered steps with checkable completion criteria.</li>
+            <li>Points to shared standards instead of duplicating them.</li>
+            <li>Includes validation commands or concrete skip criteria.</li>
+            <li>States what agents must avoid.</li>
+            <li>Has no placeholder text, broad motivation, or sample clutter.</li>
+          </ul>
+        </div>
+      </section>
+    </main>
+  </body>
+</html>

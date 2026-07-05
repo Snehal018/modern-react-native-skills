@@ -9,6 +9,8 @@ description: Setup React Native or Expo projects that already exist. Use when th
 
 Configure an already-created Expo or React Native boilerplate project into the standard modern architecture. This skill must inspect first, preserve existing code, and make incremental changes.
 
+Read `../_shared/skill-system-constitution.md` before editing this skill or creating adjacent setup skills.
+
 Read `../_shared/react-native-modern-standard.md` before making decisions. Treat it as the default standard unless the existing project has a clear and consistent alternative.
 
 ## Use this skill when

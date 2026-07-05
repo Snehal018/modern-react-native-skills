@@ -2,6 +2,8 @@
 
 This file defines the shared baseline for React Native skills in this repo. Skills should apply it in context, preserve existing project choices when they are sound, and avoid broad rewrites unless the user explicitly requests migration work.
 
+This standard sits under `skill-system-constitution.md`. Use the constitution for skill-system rules and this file for React Native app-code rules.
+
 ## Project Philosophy
 
 - Use TypeScript first.

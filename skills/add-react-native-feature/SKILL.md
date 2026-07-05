@@ -9,6 +9,8 @@ description: Add React Native or Expo features to an existing app. Use when the 
 
 Add a feature module to an existing React Native app in a consistent, type-safe, feature-based structure. This skill extends an app; it does not initialize one.
 
+Read `../_shared/skill-system-constitution.md` before editing this skill or creating adjacent feature skills.
+
 Read `../_shared/react-native-modern-standard.md` before implementing. Reuse existing project conventions when they are established and compatible.
 
 ## Use this skill when
