@@ -144,6 +144,23 @@ Default stack for modern Expo/React Native work:
 
 Sentry or similar observability can be documented as a placeholder or follow-up, but do not force full production setup unless the user requests it.
 
+### Dependency Installation
+
+When adding packages, install the latest compatible version unless the user explicitly requests a fixed version.
+
+Rules:
+
+- Inspect lock files before choosing a package manager.
+- Use the package manager implied by the existing lock file.
+- If `yarn.lock` exists, use Yarn, including when `package-lock.json` also exists.
+- If no `yarn.lock` exists but `pnpm-lock.yaml` exists, use pnpm.
+- If no `yarn.lock` or `pnpm-lock.yaml` exists but `package-lock.json` or `npm-shrinkwrap.json` exists, use npm.
+- If no lock file exists but `package.json` has `packageManager`, use that package manager.
+- If no lock file or `packageManager` field exists, use the manager already used by package scripts or repo docs; otherwise ask before installing.
+- Do not mix package managers or generate a second lock file without explicit approval.
+- Prefer explicit latest installs such as `yarn add package@latest`, `npm install package@latest`, or `pnpm add package@latest`.
+- For Expo-managed native packages, use the project's Expo-compatible install path when required, and do not knowingly install a version incompatible with the current Expo SDK.
+
 ## File And Folder Conventions
 
 - Use kebab-case for feature folders.

@@ -53,7 +53,7 @@ Then ask them to run the skill inside that project.
 2. Confirm the project is Expo or React Native before changing files.
 3. Read existing configs: TypeScript, Babel/Metro, Expo config, ESLint, Prettier, router/navigation, env handling, and package scripts.
 4. Identify conflicts between existing architecture and the shared standard. If the conflict is significant, summarize it and suggest a migration plan before rewriting structure.
-5. Inspect `package.json` and add only missing dependencies. Complete when the dependency plan has no duplicates and preserves existing choices.
+5. Inspect `package.json` and lock files, choose the package manager using the shared dependency installation rules, and add only missing latest compatible dependencies. Complete when the dependency plan has no duplicates, preserves existing choices, and does not generate a second lock file.
 6. Configure or normalize `src/` structure using feature-based organization. Complete when user code is preserved and any moves are obvious, low risk, or approved.
 7. Configure TypeScript path aliases, usually `@/*`, and update Babel/Metro settings only when required by the project. Complete when imports resolve.
 8. Add or complete linting and formatting config if missing. Complete when existing rules are preserved unless they conflict with the standard.
@@ -73,6 +73,8 @@ Follow `../_shared/react-native-modern-standard.md`.
 Package standards:
 
 Use the baseline stack from the shared standard. Add only packages that the project lacks and the setup actually needs.
+
+Use the dependency installation rules from the shared standard. In particular, choose the package manager from lock files first, use Yarn when both `yarn.lock` and `package-lock.json` exist, and install latest compatible package versions.
 
 Expected file/folder conventions:
 
@@ -97,7 +99,10 @@ If the project already uses root `app/` for Expo Router, keep it unless moving t
 
 - Project was confirmed to be Expo/RN before changes.
 - Empty or non-RN folders were refused.
+- Package manager was selected from the lock file policy before installing dependencies.
 - Dependencies were added without duplicates.
+- Dependencies were installed at latest compatible versions unless the user requested pins.
+- No second lock file was generated without approval.
 - Existing user code was preserved.
 - TypeScript remains valid.
 - Imports work with path aliases.
@@ -114,6 +119,8 @@ If the project already uses root `app/` for Expo Router, keep it unless moving t
 - Do not create the Expo project from scratch.
 - Do not scaffold into an empty folder.
 - Do not blindly install every baseline dependency.
+- Do not mix package managers or use npm in a Yarn-locked project.
+- Do not install stale package versions unless compatibility or the user requires a pin.
 - Do not overwrite user architecture destructively.
 - Do not introduce a second navigation system.
 - Do not store API/server data in Zustand without a strong reason.
